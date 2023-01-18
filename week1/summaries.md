@@ -22,8 +22,8 @@ Opinion: This article on VisiCalc describes in great detail the origin of the id
 //2 hours for this 
 
 Title: 'The History (and Future) of Software', Booch; Souce: https://www.youtube.com/watch?v=OdI7Ukf-Bf4
-Keywords: 
-Summary:
-Opinion:
+Keywords: software; invisible thread; creative; fragile; hardware software; symbolic computation; sage; the operating system wars; OOD; internet and ecosystems; software development towards intimacy; neural networks; the Hidden Writing
+Summary: The speaker starts by describing software is the invisible thread, it is fragile, creative, and have good or bad results. The history of computer starts 1890s when humans are computers, then there is pipeline working on machines to decompose the problem, but not until 1950s software become legitimate term, and during sage, the economic value of software was recognized, then Margaret came up by viewing software engineering as other common engineerings. After that, the presence of microprocessor allows us to go from numeric, to symbolic, and mirror worlds. Shrinking machinery made it possible for private computers, thus triggering OS wars operating. And when we start to connect computers, we got the internet and ecosystems. For now, intelligence is moving out to the edge, neural networks makes computer learn and "computers are humans", while software is still undergoing the process of continous intergration and becoming more intimate. At last, the speaker ends the speech with "software is the hidden writing that whispers the stories of possibility to our hardware".
+Opinion: It is a very fascinating history of software development. The most thrilling part is when the speaker talks about the separation of hardware and software, when software engineering becomes a "serious engineering" where scientific principles for other engineerings also applies here, and it is possible to perform the "strange loop" of building itself on itself, thus performing the transition from numeric, to symbolic and to mirror worlds. Moreover, it is great for him to mention about "read and do sth. out of your comfort zone" in Q&A stage. However, it would be even better if the speaker talks about more about the software build upon clouds, as that's most financial technology works on.
 
-
+//2 hours for this
