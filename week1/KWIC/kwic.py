@@ -3,9 +3,11 @@ import sys
 def main():
     #read everything from stdin, until enter+ctrl+d used to signal the end; each line before "::" is one WTI, each line after "::" is one sentence to be sorted
     input_string = sys.stdin.read()
+    if not input_string:
+        raise ValueError("empty input")
     a = input_string.split("::")
     if len(a) != 2:
-        raise ValueError("please input words to ignore or titles")
+        raise ValueError("no input words to ignore or titles")
     ig_words = a[0].lower().strip('\n').split('\n')
 
     sentences = a[1].lower().strip('\n').split('\n')

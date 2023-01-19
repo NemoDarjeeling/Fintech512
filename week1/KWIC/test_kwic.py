@@ -17,13 +17,17 @@ class TestKeywords(unittest.TestCase):
 
         self.assertEqual(test_output, expected_output)
 
-    def test_no_keywords(self):
+    def test_no_WTI_title(self):
         with self.assertRaises(ValueError):
             test_input = "Descent of Man\nThe Ascent of Man\nThe Old Man and The Sea\nA Portrait of The Artist As a Young Man\nA Man is a Man but Bubblesort IS A DOG"
             sys.stdin = io.StringIO(test_input)
             test_output = kwic.main()
     
-
+    def test_empty_input(self):
+        with self.assertRaises(ValueError):
+            test_input = ""
+            sys.stdin = io.StringIO(test_input)
+            test_output = kwic.main()
 
 
 if __name__ == '__main__':
