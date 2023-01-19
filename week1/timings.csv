@@ -2,4 +2,7 @@
 # header: netid, week, task, title, minutes
 # example row: pjm52, week1, Read, Bullet, 180
 
-
+netid, week, task, title, minutes
+hy204, week1, Read, Bullet, 180
+hy204, week1, Read, VisiCalc, 150
+hy204, week1, Watch, Software, 150
