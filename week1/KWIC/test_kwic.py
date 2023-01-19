@@ -43,7 +43,6 @@ class TestKeywords(unittest.TestCase):
             sys.stdin = io.StringIO(test_input)
             test_output = kwic.main()
 
-
 if __name__ == '__main__':
     unittest.main(verbosity = 2)
 
