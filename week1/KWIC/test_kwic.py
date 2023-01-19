@@ -18,16 +18,18 @@ class TestKeywords(unittest.TestCase):
         self.assertEqual(test_output, expected_output)
 
     def test_no_keyword(self):
-        # Test input
         test_input = "is\nthe\nof\n::\nis the of\nof the is\nthe is of"
-        # Expected output
         expected_output = ""
-
-        # redirect stdin
         sys.stdin = io.StringIO(test_input)
         test_output = kwic.main()
-
         self.assertEqual(test_output, expected_output)        
+
+    def test_all_keyword(self):
+        test_input = "a\nb\n::\nHello Python World"
+        expected_output = "HELLO python world\nhello PYTHON world\nhello python WORLD"
+        sys.stdin = io.StringIO(test_input)
+        test_output = kwic.main()
+        self.assertEqual(test_output, expected_output) 
 
     def test_no_WTI_title(self):
         with self.assertRaises(ValueError):
