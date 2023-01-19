@@ -5,7 +5,7 @@ import kwic
 
 #unittest has to work with a function that "returns" sth.
 class TestKeywords(unittest.TestCase):
-    def test_std(self):
+    def test_std_input(self):
         # Test input
         test_input = "is\nthe\nof\nand\nas\na\nbut\n::\nDescent of Man\nThe Ascent of Man\nThe Old Man and The Sea\nA Portrait of The Artist As a Young Man\nA Man is a Man but Bubblesort IS A DOG"
         # Expected output
@@ -16,6 +16,18 @@ class TestKeywords(unittest.TestCase):
         test_output = kwic.main()
 
         self.assertEqual(test_output, expected_output)
+
+    def test_no_keyword(self):
+        # Test input
+        test_input = "is\nthe\nof\n::\nis the of\nof the is\nthe is of"
+        # Expected output
+        expected_output = ""
+
+        # redirect stdin
+        sys.stdin = io.StringIO(test_input)
+        test_output = kwic.main()
+
+        self.assertEqual(test_output, expected_output)        
 
     def test_no_WTI_title(self):
         with self.assertRaises(ValueError):
