@@ -1,10 +1,9 @@
 class Money {
     protected int amount;
     public boolean equals(Object object) {
-        Money money= (Money) object;
-        return amount == money.amount;
+        Money money = (Money) object;
+        return amount == money.amount && getClass().equals(money.getClass());
         }
-    }
 
 class Dollar extends Money{
     Dollar(int amount) {
@@ -35,6 +34,7 @@ public void testEquality() {
     assertFalse(new Dollar(5).equals(new Dollar(6)));
     assertTrue(new Franc(5).equals(new Franc(5)));
     assertFalse(new Franc(5).equals(new Franc(6)));
+    assertFalse(new Franc(5).equals(new Dollar(5)));
     }
 
 public void testFrancMultiplication() {

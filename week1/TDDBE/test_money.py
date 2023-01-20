@@ -13,7 +13,8 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(Dollar(5), Dollar(5))   
         self.assertNotEqual(Dollar(5), Dollar(6))
         self.assertEqual(Franc(5), Franc(5))   
-        self.assertNotEqual(Franc(5), Franc(6))        
+        self.assertNotEqual(Franc(5), Franc(6))   
+        self.assertNotEqual(Franc(5), Dollar(6))     
 
     def test_franc_multiplication(self):
         five = Franc(5)
@@ -22,3 +23,4 @@ class TestSquare(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity = 2)
+    
