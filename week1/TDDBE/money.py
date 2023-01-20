@@ -1,28 +1,23 @@
-class Dollar:
+#In Python, we don't have a built-in keyword like "protected" in Java, but we have a convention to use a single leading underscore (_) before the name of an attribute or method to indicate that it is intended for internal use and should not be accessed from outside the class. 
+class Money:
     def __init__(self, amount):
-        self._amount = amount
+        self.amount = amount
+        
+    def __eq__(self, other):
+        return self.amount == other.amount
+
+class Dollar(Money):
+    #override of protected method in class Money
+    def __init__(self, amount):
+        super().__init__(amount)
     
     def times(self, multiplier):
-        return Dollar(self._amount * multiplier)
+        return Dollar(self.amount * multiplier)  
 
-    def __eq__(self, other): # override of original __eq__
-        return isinstance(other, Dollar) and self._amount == other._amount 
-    
-    # setting amount "_amount" private to Dollar, but can access the value of amount attribute by calling dollar.amount instead of dollar._amount 
-    @property
-    def amount(self):
-        return self._amount   
-
-class Franc:
+class Franc(Money):
     def __init__(self, amount):
-        self._amount = amount
+        super().__init__(amount)
     
     def times(self, multiplier):
-        return Franc(self._amount * multiplier)
-
-    def __eq__(self, other): # override of original __eq__
-        return isinstance(other, Franc) and self._amount == other._amount 
-    
-    @property
-    def amount(self):
-        return self._amount        
+        return Franc(self.amount * multiplier)
+     
