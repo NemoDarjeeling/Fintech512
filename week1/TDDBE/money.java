@@ -9,11 +9,11 @@ abstract class Money {
         }
 
     static Money dollar(int amount) {
-        return new Dollar(amount, "USD");
+        return new Money(amount, "USD");
         }
 
     static Money franc(int amount) {
-        return new Franc(amount, "CHF");
+        return new Money(amount, "CHF");
         }
 
     Money times(int multiplier) {
@@ -64,8 +64,6 @@ public void testMultiplication() {
 public void testEquality() {
 	assertTrue(Money.dollar(5).equals(Money.dollar(5)));
 	assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-	assertTrue(Money.franc(5).equals(Money.franc(5)));
-	assertFalse(Money.franc(5).equals(Money.franc(6)));
 	assertFalse(Money.franc(5).equals(Money.dollar(5)));
 	}
 

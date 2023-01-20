@@ -12,11 +12,11 @@ class Money:
     #"money = Money.dollar(5)" 初始化由父类里这两个函数代劳，用不到子类里的初始化，子类里面自然也就不需要重载父类的初始化了   
     @staticmethod
     def dollar(amount):
-        return Dollar(amount, "USD")
+        return Money(amount, "USD")
     
     @staticmethod
     def franc(amount):
-        return Franc(amount, "CHF")
+        return Money(amount, "CHF")
         
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
