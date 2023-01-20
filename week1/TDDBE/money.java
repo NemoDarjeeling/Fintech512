@@ -1,12 +1,15 @@
 abstract class Money {
-    protected int amount;
+    Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+        }
 
     static Money dollar(int amount) {
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
         }
 
     static Money franc(int amount) {
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
         }
 
     abstract Money times(int multiplier);
@@ -18,21 +21,23 @@ abstract class Money {
 }
 
 class Dollar extends Money{
-    //子类没有constructor父类就要有，父类没有子类就要有
-    Dollar(int amount) {
-        this.amount= amount;
+    //override Money's constructor
+    Dollar(int amount, String currency) {
+        super(amount, currency);
         }
-    Dollar times(int multiplier) {
-        return new Dollar(amount * multiplier);
+
+    Money times(int multiplier) {
+        return Money.dollar(amount * multiplier);
         }
     }
 
 class Franc extends Money{
-    Franc(int amount) {
-        this.amount= amount;
+    Franc(int amount, String currency) {
+        super(amount, currency);
         }
-    Franc times(int multiplier) {
-        return new Franc(amount * multiplier);
+
+    Money times(int multiplier) {
+        return Money.franc(amount * multiplier);
         }
     }
                      
