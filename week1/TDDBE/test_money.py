@@ -3,6 +3,14 @@ import unittest
 from money import Dollar, Franc, Money
 
 class TestMoney(unittest.TestCase):
+    #different class, same currency, should be equal
+    def test_dif_class_equality(self):
+        self.assertEqual(Money(10, "CHF"), Franc(10, "CHF"))
+
+    def test_currency(self):
+        self.assertEqual(Money.dollar(1).currency, "USD")
+        self.assertEqual(Money.franc(1).currency, "CHF")
+
     def test_multiplication(self):
         five = Money.dollar(5)
         self.assertEqual(five.times(2), Money.dollar(10))
