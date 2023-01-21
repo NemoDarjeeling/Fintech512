@@ -1,4 +1,12 @@
-abstract class Money {
+interface Expression
+
+class Bank {
+    Money reduce(Expression source, String to) {
+        return Money.dollar(10);
+        }    
+}
+
+class Money implements Expression{
     Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
@@ -20,6 +28,10 @@ abstract class Money {
         return new Money(amount * multiplier, currency);
         }
 
+    Expression plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
+        }
+
     public boolean equals(Object object) {
         Money money = (Money) object;
         return amount == money.amount && currency().equals(money.currency());
@@ -32,19 +44,18 @@ class Dollar extends Money{
         super(amount, currency);
         }
 
-    // Money times(int multiplier) {
-    //     return new Money(amount * multiplier, currency);
-    //     }
-    // }
-
 class Franc extends Money{
     Franc(int amount, String currency) {
         super(amount, currency);
         }
 
-    // Money times(int multiplier) {
-    //     return new Money(amount * multiplier, currency);
-    //     }
+public void testSimpleAddition() {
+    Money five= Money.dollar(5);
+    Expression sum= five.plus(five);
+    Bank bank= new Bank();
+    Money reduced= bank.reduce(sum, "USD");
+    assertEquals(Money.dollar(10), reduced);
+    }
 
 public void testDifferentClassEquality() {
     assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));

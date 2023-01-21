@@ -1,8 +1,15 @@
 import unittest
 # if you want to access Dollar by just import money, you have to use its fully-qualified name everytime you mention it in your code
-from money import Dollar, Franc, Money
+from money import Dollar, Franc, Money, Bank
 
 class TestMoney(unittest.TestCase):
+    def test_simp_add(self):
+        five = Money.dollar(5)
+        sum = five.plus(five)
+        bank = Bank()
+        reduced = bank.reduce(sum, "USD")        
+        self.assertEqual(reduced, Money.dollar(10))
+    
     #different class, same currency, should be equal
     def test_dif_class_equality(self):
         self.assertEqual(Money(10, "CHF"), Franc(10, "CHF"))
