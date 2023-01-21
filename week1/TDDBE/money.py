@@ -1,19 +1,45 @@
 class Expression:
-    def reduce(self, to):
+    def reduce(self, bank, to_currency):
         pass
 
+class Pair:
+    def __init__(self, from_currency, to_currency):
+        self.from_currency = from_currency
+        self.to_currency = to_currency
+
+    def __eq__(self, other):
+        return self.from_currency == other.from_currency and self.to_currency == other.to_currency
+    #In python, we don't have a built-in hashCode() method like in Java. Instead, Python uses the __hash__() method to determine the hash value of an object. The __hash__() method is a special method that is automatically called when an object is used as a key in a dictionary or as an element in a set.
+    #In python, if a class wants to be hashable, it must implement the hash and eq methods. 
+    def __hash__(self):
+        return hash((self.from_currency, self.to_currency))
+
 class Bank:
-    def reduce(self, source, to):
-        return source.reduce(to)
+    #no built-in Hashtable class in python, it is just dictionary
+    def __init__(self):
+        self.rates = {}
+
+    def reduce(self, source, to_currency):
+        return source.reduce(self, to_currency)
+
+    def rate(self, from_currency, to_currency):
+        if from_currency == to_currency:
+            return 1
+        #In python, the get() method is a built-in method of the dict (dictionary) class, it works similar to the Hashtable's get() method in java. The get() method of the dict class is used to retrieve the value associated with a specific key. If the key is not found in the dictionary, it returns a default value (which can be specified as an argument to the get() method). If no default value is specified, it returns None
+        rate = self.rates.get(Pair(from_currency, to_currency))
+        return rate
+
+    def add_rate(self, from_currency, to_currency, rate):
+        self.rates[Pair(from_currency, to_currency)] = rate
 
 class Sum(Expression):
     def __init__(self, augend, addend):
         self.augend = augend
         self.addend = addend
 
-    def reduce(self, to):
+    def reduce(self, bank, to_currency):
         amount = self.augend.amount + self.addend.amount
-        return Money(amount, to)
+        return Money(amount, to_currency)
 
 #In Python, we don't have a built-in keyword like "protected" in Java, but we have a convention to use a single leading underscore (_) before the name of an attribute or method to indicate that it is intended for internal use and should not be accessed from outside the class. 
 class Money(Expression):
@@ -38,8 +64,9 @@ class Money(Expression):
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
 
-    def reduce(self, to):
-        return self    
+    def reduce(self, bank, to_currency):
+        rate = bank.rate(self.currency, to_currency)
+        return Money(self.amount / rate, to_currency)    
 
     def plus(self, addend):
         return Sum(self, addend)

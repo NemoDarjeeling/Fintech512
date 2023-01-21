@@ -1,8 +1,18 @@
 import unittest
 # if you want to access Dollar by just import money, you have to use its fully-qualified name everytime you mention it in your code
-from money import Dollar, Franc, Money, Bank, Sum
+from money import Dollar, Franc, Money, Bank, Sum, Expression, Pair
 
 class TestMoney(unittest.TestCase):
+    def test_identity_rate(self):
+        bank = Bank()
+        self.assertEqual(bank.rate("USD", "USD"), 1)
+
+    def test_reduce_money_different_currency(self):
+        bank = Bank()
+        bank.add_rate("CHF", "USD", 2)
+        result = bank.reduce(Money.franc(2), "USD")
+        self.assertEqual(result, Money.dollar(1))
+
     def test_plus_returns_sum(self):
         five = Money.dollar(5)
         result = five.plus(five)       
