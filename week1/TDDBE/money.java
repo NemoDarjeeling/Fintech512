@@ -4,6 +4,12 @@
 //In the case of Money object, the reduce method simply returns the Money object itself, since it is already in the desired currency. But in the case of Sum object, it will convert the Sum object to a single Money object by adding the amounts of the augend and addend Money objects and creating a new Money object with the sum of those amounts and the desired currency.
 interface Expression {
     Money reduce(Bank bank, String to);
+    //The plus() method is used to add two monetary expressions together. The plus() method takes an Expression object as a parameter, and it returns a new Expression object that represents the sum of the two expressions. The returned object is typically an instance of the Sum class.
+    //In the case of the Money class, the plus() method creates a new Sum object, with the current Money object as the "augend" (the first value being added) and the Expression object passed as the "addend" (the second value being added).
+    //In the case of the Sum class, the plus() method creates a new Sum object, with the current Sum object as the "augend" and the Expression object passed as the "addend".
+    //This method is used as a way to represent monetary expressions in a tree-like structure, where each Sum object is a node, and it has two children, the augend and addend.
+    //This design allows you to express complex monetary expressions as a tree of simple expressions, and then reduce the entire tree to a single value in a given currency.
+    Expression plus(Expression addend);
 }
 
 private class Pair {
@@ -47,14 +53,21 @@ class Bank {
 }
 
 class Sum implements Expression {
-    Money augend;
-    Money addend;
-    Sum(Money augend, Money addend) {
-        this.augend = augend;
-        this.addend = addend;
+    Expression augend;
+    Expression addend;
+
+    public Expression plus(Expression addend) {
+        return null;
+     }
+
+    Sum(Expression augend, Expression addend) {
+        this.augend= augend;
+        this.addend= addend;
         }
+    
+    //In the original code, the augend and addend expressions are simply added together, regardless of their currency. However, in the new code, the reduce() method is called on each of the augend and addend expressions, passing in the Bank and the desired currency as parameters. This causes each expression to be converted to the desired currency using the exchange rate information stored in the Bank, before being added together. This way, the final result is in the desired currency and is correct.
     public Money reduce(Bank bank, String to) {
-        int amount = augend.amount + addend.amount;
+        int amount= augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
         return new Money(amount, to);
         }
     }
@@ -77,7 +90,7 @@ class Money implements Expression{
         return new Money(amount, "CHF");
         }
 
-    Money times(int multiplier) {
+    Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
         }
 
@@ -86,7 +99,7 @@ class Money implements Expression{
         return new Money(amount / rate, to);
         }
 
-    Expression plus(Money addend) {
+    public Expression plus(Expression addend) {
         return new Sum(this, addend);
         }
 
@@ -106,6 +119,15 @@ class Franc extends Money{
     Franc(int amount, String currency) {
         super(amount, currency);
         }
+
+public void testMixedAddition() {
+    Expression fiveBucks= Money.dollar(5);
+    Expression tenFrancs= Money.franc(10);
+    Bank bank= new Bank();
+    bank.addRate("CHF", "USD", 2);
+    Money result= bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+    assertEquals(Money.dollar(10), result);
+    }
 
 public void testIdentityRate() {
     assertEquals(1, new Bank().rate("USD", "USD"));

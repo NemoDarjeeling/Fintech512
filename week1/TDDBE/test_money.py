@@ -3,6 +3,14 @@ import unittest
 from money import Dollar, Franc, Money, Bank, Sum, Expression, Pair
 
 class TestMoney(unittest.TestCase):
+    def test_mixed_addition(self):
+        five_bucks = Money.dollar(5)
+        ten_francs = Money.franc(10)
+        bank = Bank()
+        bank.add_rate("CHF", "USD", 2)
+        result= bank.reduce(five_bucks.plus(ten_francs), "USD")
+        self.assertEqual(result, Money.dollar(10))
+
     def test_identity_rate(self):
         bank = Bank()
         self.assertEqual(bank.rate("USD", "USD"), 1)

@@ -1,5 +1,12 @@
-class Expression:
+from abc import ABC, abstractmethod
+
+class Expression(ABC):
+    @abstractmethod
     def reduce(self, bank, to_currency):
+        pass
+
+    @abstractmethod
+    def plus(self, addend):
         pass
 
 class Pair:
@@ -33,12 +40,16 @@ class Bank:
         self.rates[Pair(from_currency, to_currency)] = rate
 
 class Sum(Expression):
+    #now type of augend and addend is Expression, so we need abstract method in class Expression
     def __init__(self, augend, addend):
         self.augend = augend
         self.addend = addend
 
+    def plus(self, addend):
+        return None
+
     def reduce(self, bank, to_currency):
-        amount = self.augend.amount + self.addend.amount
+        amount = self.augend.reduce(bank, to_currency).amount + self.addend.reduce(bank, to_currency).amount
         return Money(amount, to_currency)
 
 #In Python, we don't have a built-in keyword like "protected" in Java, but we have a convention to use a single leading underscore (_) before the name of an attribute or method to indicate that it is intended for internal use and should not be accessed from outside the class. 
@@ -66,7 +77,7 @@ class Money(Expression):
 
     def reduce(self, bank, to_currency):
         rate = bank.rate(self.currency, to_currency)
-        return Money(self.amount / rate, to_currency)    
+        return Money(self.amount / rate, to_currency)
 
     def plus(self, addend):
         return Sum(self, addend)
