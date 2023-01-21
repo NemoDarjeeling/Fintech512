@@ -1,17 +1,19 @@
-from abc import ABC, abstractmethod
-
-#python do not have interface so we use abm
-#By using the abc module and the @abstractmethod decorator, the Expression class is indicating that any class that subclasses it must provide an implementation for the plus method. 
-#this allows us to add not only Money
-class Expression(ABC):
-    @abstractmethod
-    def plus(self, addend):
+class Expression:
+    def reduce(self, to):
         pass
 
-#doesn't really do anything here, just to pass the test
 class Bank:
     def reduce(self, source, to):
-        return Money(10, "USD")
+        return source.reduce(to)
+
+class Sum(Expression):
+    def __init__(self, augend, addend):
+        self.augend = augend
+        self.addend = addend
+
+    def reduce(self, to):
+        amount = self.augend.amount + self.addend.amount
+        return Money(amount, to)
 
 #In Python, we don't have a built-in keyword like "protected" in Java, but we have a convention to use a single leading underscore (_) before the name of an attribute or method to indicate that it is intended for internal use and should not be accessed from outside the class. 
 class Money(Expression):
@@ -36,8 +38,11 @@ class Money(Expression):
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
 
+    def reduce(self, to):
+        return self    
+
     def plus(self, addend):
-        return Money(self.amount + addend.amount, self.currency)
+        return Sum(self, addend)
 
     #notice no more type checks here, only value checks (trap)
     #now we add type check, noticeIt is not correct to replace "return self._amount == other._amount and type(self) == type(other)" with "return isinstance(self, other) and self._amount == other._amount" 
