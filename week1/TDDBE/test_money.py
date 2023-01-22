@@ -3,13 +3,40 @@ import unittest
 from money import Dollar, Franc, Money, Bank, Sum, Expression, Pair
 
 class TestMoney(unittest.TestCase):
+    # def test_plus_same_currency_returns_money(self):
+    #     sum_ = Money.dollar(1).plus(Money.dollar(1))
+    #     self.assertTrue(isinstance(sum_, Money))
+
+    def test_sum_times(self):
+        five_bucks = Money.dollar(5)
+        ten_francs = Money.franc(10)
+        bank = Bank()
+        bank.add_rate("CHF", "USD", 2)
+        sum_ = Sum(five_bucks, ten_francs).times(2)
+        result = bank.reduce(sum_, "USD")
+        self.assertEqual(result, Money.dollar(20)) 
+
+    def test_sum_plus_money(self):
+        five_bucks = Money.dollar(5)
+        ten_francs = Money.franc(10)
+        bank = Bank()
+        bank.add_rate("CHF", "USD", 2)
+        sum_ = Sum(five_bucks, ten_francs).plus(five_bucks)
+        result = bank.reduce(sum_, "USD")
+        self.assertEqual(result, Money.dollar(15)) 
+
     def test_mixed_addition(self):
         five_bucks = Money.dollar(5)
         ten_francs = Money.franc(10)
         bank = Bank()
         bank.add_rate("CHF", "USD", 2)
-        result= bank.reduce(five_bucks.plus(ten_francs), "USD")
-        self.assertEqual(result, Money.dollar(10))
+        #The reduce() method of the Bank class takes an Expression object and a currency as parameter, and it calls the reduce() method of the Expression object, passing itself as the first argument. The Expression object in this case is the Sum object result.
+        #The reduce() method of the Sum class takes a Bank object and a currency as parameter, and it uses the Bank object to reduce each of the Money objects in the Sum object to the desired currency, and then it adds together the amounts of the reduced Money objects to get the final amount in the desired currency. The final amount is then used to create a new Money object with the amount and the currency of the desired currency.
+        #So when you call the reduce() method on a Sum object, the Bank object is used to reduce each of the Money objects in the Sum object to the desired currency, and then the amounts are added together to get the final amount in the desired currency. Finally, a new Money object is created with the final amount and the currency of the desired currency and is returned.
+        #note: you haven't call reduced in class Money
+        result = five_bucks.plus(ten_francs)
+        reduced= bank.reduce(result, "USD")
+        self.assertEqual(reduced, Money.dollar(10))
 
     def test_identity_rate(self):
         bank = Bank()

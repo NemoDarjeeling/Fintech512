@@ -9,6 +9,10 @@ class Expression(ABC):
     def plus(self, addend):
         pass
 
+    @abstractmethod
+    def times(self, multiplier):
+        pass
+
 class Pair:
     def __init__(self, from_currency, to_currency):
         self.from_currency = from_currency
@@ -46,7 +50,10 @@ class Sum(Expression):
         self.addend = addend
 
     def plus(self, addend):
-        return None
+        return Sum(self, addend)
+
+    def times(self, multiplier):
+        return Sum(self.augend.times(multiplier), self.addend.times(multiplier))
 
     def reduce(self, bank, to_currency):
         amount = self.augend.reduce(bank, to_currency).amount + self.addend.reduce(bank, to_currency).amount

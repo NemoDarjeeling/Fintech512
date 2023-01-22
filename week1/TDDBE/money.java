@@ -10,6 +10,7 @@ interface Expression {
     //This method is used as a way to represent monetary expressions in a tree-like structure, where each Sum object is a node, and it has two children, the augend and addend.
     //This design allows you to express complex monetary expressions as a tree of simple expressions, and then reduce the entire tree to a single value in a given currency.
     Expression plus(Expression addend);
+    Expression times(int multiplier);
 }
 
 private class Pair {
@@ -57,8 +58,12 @@ class Sum implements Expression {
     Expression addend;
 
     public Expression plus(Expression addend) {
-        return null;
+        return new Sum(this, addend);
      }
+    
+    public Expression times(int multiplier) {
+        return new Sum(augend.times(multiplier),addend.times(multiplier));
+        }
 
     Sum(Expression augend, Expression addend) {
         this.augend= augend;
@@ -90,7 +95,7 @@ class Money implements Expression{
         return new Money(amount, "CHF");
         }
 
-    Expression times(int multiplier) {
+    public Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
         }
 
@@ -119,6 +124,31 @@ class Franc extends Money{
     Franc(int amount, String currency) {
         super(amount, currency);
         }
+
+public void testPlusSameCurrencyReturnsMoney() {
+    Expression sum= Money.dollar(1).plus(Money.dollar(1));
+    assertTrue(sum instanceof Money);
+    }
+
+public void testSumTimes() {
+    Expression fiveBucks= Money.dollar(5);
+    Expression tenFrancs= Money.franc(10);
+    Bank bank= new Bank();
+    bank.addRate("CHF", "USD", 2);
+    Expression sum= new Sum(fiveBucks, tenFrancs).times(2);
+    Money result= bank.reduce(sum, "USD");
+    assertEquals(Money.dollar(20), result);
+    }
+
+public void testSumPlusMoney() {
+    Expression fiveBucks= Money.dollar(5);
+    Expression tenFrancs= Money.franc(10);
+    Bank bank= new Bank();
+    bank.addRate("CHF", "USD", 2);
+    Expression sum= new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    Money result= bank.reduce(sum, "USD");
+    assertEquals(Money.dollar(15), result);
+    }
 
 public void testMixedAddition() {
     Expression fiveBucks= Money.dollar(5);
