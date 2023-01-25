@@ -20,9 +20,10 @@ Opinion: For the paper, the strength might be that the author presented very viv
 //time: 1.5h
 
 Title: HTML Fundamentals (Chapter 3 of Client Side Web Development); https://info340.github.io/html-fundamentals.html
-Keywords:
-Summary: It provides a comprehensive introduction to HTML, the standard markup language used to create web pages. The chapter begins by giving an overview of the history and evolution of HTML, and then covers the basic structure and syntax of an HTML document. It covers the different types of HTML elements and how to use them to create different types of content, such as text, images, links, and lists. It also covers the various attributes that can be used to modify the behavior of these elements. The chapter also covers the concept of web page layout and how to use different HTML elements and CSS to create a desired layout. Additionally, the chapter also covers the basics of HTML forms and how to use them to create input fields for user data.
-Opinion:
+Keywords: HTML elements; comments; attributes; empty elements; nesting elements; block and inline elements; web page structure; web page template
+Summary: It provides a comprehensive introduction to HTML, the standard markup language used to create web pages. The chapter covers the different types of HTML elements and how to use them to create different types of content, such as text, images, links, and lists. It also covers the various attributes that can be used to modify the behavior of these elements. The chapter also talks about the concept of web page layout and how to use different HTML elements and CSS to create a desired layout. Additionally, the basics of HTML forms and how to use them to create input fields for user data was provided.
+Opinion: The strength of this chapter is that it provides a clear and detailed explanation of how a web server works, making it easy for readers to understand the concepts and the implementation. It can be used as a starting point for learning web server development. The weakness of this chapter might be that it lacks interactive interface like Jupyter Notebook provided last semester that we can actually make some changes and operate, which can help us understand better about the concept and features introduced.
+//time: 1.5h
 
 Title: A Simple Web Server; https://www.aosabook.org/en/500L/a-simple-web-server.html 
 Keywords: "Hello, Web"; displaying values; serving static pages; listing directories; CGI protocol 
