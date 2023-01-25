@@ -28,6 +28,6 @@ Opinion: The strength of this chapter is that it provides a clear and detailed e
 Title: A Simple Web Server; https://www.aosabook.org/en/500L/a-simple-web-server.html 
 Keywords: "Hello, Web"; displaying values; serving static pages; listing directories; CGI protocol 
 Summary: "A Simple Web Server" provides a detailed and easy-to-understand explanation of how a web server works, and how to build a simple web server using Python. 
-Opinion: I think it's a good starting point for developers like me, who are new to web server development, and want to understand the basics and how to build a simple web server.
+Opinion: I think it's a good starting point for developers like me, who are new to web server development, and want to understand the basics and how to build a simple web server. But still the problem of comprehensiveness and interaction, the codes presented omitted attributes and codes from elsewhere and unaccessible to readers, which makes it difficult to understand what each line of code is doing. 
 //not required for summary, time: 2.5h
 
