@@ -29,6 +29,13 @@ class TestKeywords(unittest.TestCase):
         expected_output = "HELLO python world\nhello PYTHON world\nhello python WORLD"
         sys.stdin = io.StringIO(test_input)
         test_output = kwic.main()
+        self.assertEqual(test_output, expected_output)
+
+    def test_WTI_uppercase(self):
+        test_input = "Is\nThe\nOf\n::\nDescent of Man"
+        expected_output = "DESCENT of man\ndescent of MAN"
+        sys.stdin = io.StringIO(test_input)
+        test_output = kwic.main()
         self.assertEqual(test_output, expected_output) 
 
     def test_no_WTI_title(self):
