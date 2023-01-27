@@ -73,6 +73,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
                 if case.test(self):
                     case.act(self)
                     break
+            #the iteration ensures we got a request and go through every case in Cases, and go to each test, if test == false, no need to go to act(), jump to next case; if test == true, execute act()
 
         # Handle errors.
         except Exception as msg:

@@ -1,4 +1,4 @@
-import sys, os, BaseHTTPServer
+import sys, os, http.server
 
 #-------------------------------------------------------------------------------
 
@@ -29,7 +29,8 @@ class case_existing_file(object):
         handler.handle_file(handler.full_path)
 
 #-------------------------------------------------------------------------------
-
+# index.html is nothing special as it is not actually a dir
+# this is used to test that localhost:8080 is a dir, and there is something, which is index.html in that dir
 class case_directory_index_file(object):
     '''Serve index.html page for a directory.'''
 
@@ -44,7 +45,9 @@ class case_directory_index_file(object):
         handler.handle_file(self.index_path(handler))
 
 #-------------------------------------------------------------------------------
-
+# this is used for directory without an index.html page
+# the path should end with a dir, and not a file in a dir
+# does not matter whether type http://localhost:8080/subdir or http://localhost:8080/subdir/
 class case_directory_no_index_file(object):
     '''Serve listing for a directory without an index.html page.'''
 
@@ -71,7 +74,7 @@ class case_always_fail(object):
 
 #-------------------------------------------------------------------------------
 
-class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class RequestHandler(http.server.BaseHTTPRequestHandler):
     '''
     If the requested path maps to a file, that file is served.
     If anything goes wrong, an error page is constructed.
@@ -136,6 +139,8 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             bullets = ['<li>{0}</li>'.format(e) for e in entries if not e.startswith('.')]
             page = self.Listing_Page.format('\n'.join(bullets))
             self.send_content(page)
+        #???how to trigger this, an empty dir will be a blank website???
+        #making the directory secure by chmod 000 subdir_secure
         except OSError as msg:
             msg = "'{0}' cannot be listed: {1}".format(self.path, msg)
             self.handle_error(msg)
@@ -151,11 +156,12 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.send_header("Content-Length", str(len(content)))
         self.end_headers()
-        self.wfile.write(content)
+        self.wfile.write(content.encode('utf-8'))
+        #self.wfile.write(content)
 
 #-------------------------------------------------------------------------------
 
 if __name__ == '__main__':
     serverAddress = ('', 8080)
-    server = BaseHTTPServer.HTTPServer(serverAddress, RequestHandler)
+    server = http.server.HTTPServer(serverAddress, RequestHandler)
     server.serve_forever()

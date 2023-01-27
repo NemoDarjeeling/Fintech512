@@ -44,7 +44,9 @@ class case_directory_index_file(object):
         handler.handle_file(self.index_path(handler))
 
 #-------------------------------------------------------------------------------
-
+#The do_GET method in the RequestHandler class first checks if the requested path maps to a file, and if it does, it serves that file. If the file doesn't exist, the code then checks if the requested path maps to a directory and if it has an index.html file, if that's the case it will serve that file. If neither of those conditions are true, the last case, case_always_fail, will be executed, however it seems that the handle_error method is called within this case. This method sends a default error page to the browser with a 404 status code.
+#so, whatever strange thing you type, there won't display Error_Page you wrote, but just default 404
+#but the corresponding error message will be presented in terminal
 class case_always_fail(object):
     '''Base case if nothing else worked.'''
 
