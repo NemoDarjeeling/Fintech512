@@ -153,6 +153,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
             msg = "'{0}' cannot be listed: {1}".format(self.path, msg)
             self.handle_error(msg)
 
+    #this server.py is used to set up a server, this cgi is used to run executable program files in the same dir of server.py, for instance, simple.py to show time
     def run_cgi(self, full_path):
         cmd = "python3 " + full_path
         p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, close_fds=True)
