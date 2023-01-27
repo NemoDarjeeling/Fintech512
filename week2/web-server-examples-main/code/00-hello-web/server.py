@@ -10,7 +10,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
 <html>
   <head>
     <meta charset=“utf-8”>
-    <title>Hello</title>
+    <title>title for hy204</title>
   </head>
 <body>
 <p>Hello, web!</p>
