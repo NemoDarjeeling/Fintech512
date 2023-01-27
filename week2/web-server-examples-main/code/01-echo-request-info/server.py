@@ -8,6 +8,10 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
     # Template for page to send back.
     Page = '''\
 <html>
+  <head>
+    <meta charset=“utf-8”>
+    <title>displaying values of hy204</title>
+  </head>
 <body>
 <table>
 <tr>  <td>Header</td>         <td>Value</td>          </tr>

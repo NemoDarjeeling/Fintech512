@@ -14,6 +14,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
   </head>
 <body>
 <p>Hello, web!</p>
+<p>...And here is my netid: hy204</p>
 </body>
 </html>
 '''
