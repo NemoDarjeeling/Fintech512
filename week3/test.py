@@ -1,44 +1,74 @@
 import sys
 
 
-    # input_string = sys.stdin.read()
-    # if not input_string:
-    #     raise ValueError("empty input")
-    input_string = "of\na\nthe\nis\nbut\n::\ndescent of man\nthe ascent of man\nthe old man and the sea\na man is a man but bubblesort is a dog"
-    a = input_string.split("::")
-    print(a)
-    ig_words = a[0].lower().strip('\n').split('\n')
+input_string = "of\na\nthe\nis\nand\nbut\n::\ndescent of man\nthe ascent of man\nthe old man and the sea\na man is a man but bubblesort is a dog"
 
-    sentences = a[1].lower().strip('\n').split('\n')
-    all_words = []
-    for i in sentences:
+a = input_string.split("::")
+
+def strToList(string):
+    aList = string.lower().strip('\n').split('\n')
+    return aList
+
+ig_words = strToList(a[0])
+sentences = strToList(a[1])
+
+def parseAW(list):
+    aw = []
+    for i in list:
         word = i.split()
-        all_words.append(word)
+        aw.append(word)
+    return aw
 
-    key_words = []
-    for i in all_words:
+all_words = parseAW(sentences)
+
+def parseKW(content, target):
+    kw = []
+    for i in content:
         for j in i:
-            if j not in ig_words:
-                key_words.append(j)
-    key_words = sorted(list(set(key_words)))
+            if j not in target:
+                kw.append(j)
+    kw = sorted(list(set(kw)))
+    return kw    
 
+key_words = parseKW(all_words, ig_words)
+
+#possible object creation?For all lines of title: keyword1:[list1,[indexInList]];[list2,[indexInList]]...keyword2:[list1,[indexInList]];[list2,[indexInList]]...
+def oneKwOneTitleLoc(kw, title):
+    loc = []
+    m = title.find(kw)
+    while m != -1:
+        loc.append(m)
+        m = title.find(kw, m + len(kw))
+    return loc    
+
+def oneKwOneTitleRep(kw, title, loc):
     result = ""
+    for i in loc:
+        temp = title[:i] + title[(i + len(kw)):]
+        replace = temp[:i] + kw.upper() + temp[i:]
+        if replace:
+            result += replace + "\n"
+    if len(result) > 0:
+        return result
 
-    for i in key_words:
-        for j in sentences:
-            loc = []
-            m = j.find(i)
-            while m != -1:
-                loc.append(m)
-                m = j.find(i, m + len(i))
+def catResult(res, rep):
+    if rep is not None:
+        res += rep
 
-            if loc:
+    
+ans = ""
+for i in key_words:
+    for j in sentences:
+        aLoc = oneKwOneTitleLoc(i, j)
+        aRep = oneKwOneTitleRep(i, j, aLoc)
+        if aRep is not None:
+            ans += aRep
+print(ans)
+        
+        
 
-                for n in loc:
-                    temp_dele = j[:n] + j[(n + len(i)):]
-                    temp_inse = temp_dele[:n] + i.upper() + temp_dele[n:]
-                    print(temp_inse)
-                    result += temp_inse + "\n"
 
-    # ulti_result = result[:-1] 
-    # return ulti_result
+
+
+
+
