@@ -32,8 +32,7 @@ URL for speaker deck: https://speakerdeck.com/skmetz/solid-object-oriented-desig
 
 Some extra work...
 Title: Hints and Principles of Computer System Design
-Summary:
-This paper suggests the goals you might have for your system — Simple, Timely, Efficient, Adaptable, Dependable, Yummy (STEADY) — and techniques for achieving them — Approximate, Incremental, Divide & Conquer (AID). It also gives some principles for system design that are more than just hints, and many examples of how to apply the ideas.
+Summary: This paper suggests the goals you might have for your system — Simple, Timely, Efficient, Adaptable, Dependable, Yummy (STEADY) — and techniques for achieving them — Approximate, Incremental, Divide & Conquer (AID). It also gives some principles for system design that are more than just hints, and many examples of how to apply the ideas.
 − Keep it simple. Complexity kills.
 − Write a spec. At least, write down the abstract state.
 − Build with modules, parts of the system that people can work on independently
