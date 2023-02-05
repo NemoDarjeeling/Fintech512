@@ -22,7 +22,7 @@ Keywords: Code review; Software development; Collaboration; Quality assurance; P
 Summary: The chapter discusses the best practices and techniques for code review in modern software development. It covers the benefits of code review, such as improved code quality, better collaboration, and knowledge sharing among developers. The author pointed out the existence of focus fatigue and recommended a reasonable code review time and quantity. It also covers different code review methods, such as self inspection, pair programming, and formal group meeting. The author conclude from statistics that while external reviewers can discover more subtle problems, self inspection is more cost-efficiency. 
 Opinion: For the strength, it covers how to handle common challenges that arise during code reviews, such as dealing with conflicting feedback, handling sensitive code and how to give and receive constructive feedback. For the weakness, it may not take into account the specific needs and constraints of different types of organizations or projects.
 
-Title: Checklist in Greiler Code Review EBook; //unaccessible //
+Title: Checklist in Greiler Code Review EBook; 
 
 Title: SOLID Object-Oriented Design, Sandi Metz; https://www.youtube.com/watch?v=v-2yFMzxqwU
 Keywords: OOD; SOLID; DRY; configuration; dependency; red, green and refactor
