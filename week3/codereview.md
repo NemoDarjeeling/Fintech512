@@ -5,7 +5,7 @@ My code:
         Branches: 0
         Conditions: 8
 
-Sihan's code:
+Sihan Wang's code:
     SLOC:49 lines;
     ABC Metric: 27
         Assignments: 15
