@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
+
+<!-- {% extends 'base.html' %}: This line specifies that this template extends the base.html template. This means that the code in this template will be inserted into the base.html template at the locations specified by blocks.
+
+{% block header %}: This block defines a section in the template that will be used to override the same named block in the base.html template.
+
+<h1>{% block title %}New Post{% endblock %}</h1>: This block defines a title that will be displayed in the header section of the template. The title can be overridden in other templates that extend this template.
+
+{% endblock %}: This line signifies the end of the header block.
+
+{% block content %}: This block defines a section in the template that will be used to override the same named block in the base.html template.
+
+<form method="post">: This line starts a new HTML form with the method attribute set to "post", meaning that the form data will be sent to the server as an HTTP POST request.
+
+<label for="title">Title</label>: This line creates a label for the title input field. The "for" attribute specifies which input field the label is associated with.
+
+<input name="title" id="title" value="{{ request.form['title'] }}" required>: This line creates an input field for the title of the post. The "name" attribute is used to identify the field when the form is submitted, and the "value" attribute is used to set the value of the field. The value is obtained from the form data in the current request (stored in the request.form dictionary). The "required" attribute specifies that the field is required and must be filled out.
+
+<label for="body">Body</label>: This line creates a label for the body textarea field. The "for" attribute specifies which textarea field the label is associated with.
+
+<textarea name="body" id="body">{{ request.form['body'] }}</textarea>: This line creates a textarea field for the body of the post. The "name" attribute is used to identify the field when the form is submitted. The contents of the textarea are obtained from the form data in the current request (stored in the request.form dictionary).
+
+<input type="submit" value="Save">: This line creates a submit button for the form. The "value" attribute sets the text that will be displayed on the button.
+
+{% endblock %}: This line signifies the end of the content block. -->

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<!-- this line specifies that this template file will inherit from a base template file named "base.html". -->
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+<!-- this block defines the content of the "header" section in this template. The block is defined by its starting and ending delimiters "{% block header %}" and "{% endblock %}". The content of the block includes a title block, which is another nested block defined by "{% block title %}" and "{% endblock %}", and the title of this block is "Register". -->
+<!-- A useful pattern used here is to place {% block title %} inside {% block header %}. This will set the title block and then output the value of it into the header block, so that both the window and page share the same title without writing it twice. -->
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}
+<!-- The content of this block is an HTML form with two input fields (username and password) and a submit button with the text "Register". The form's method is set to "post". -->

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title"
+      value="{{ request.form['title'] or post['title'] }}" required>
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
+
+<!-- This code is a template for the edit post page of a blog. The first line {% extends 'base.html' %} indicates that the template is inheriting from the base.html template, which is a common layout for all pages in the blog.
+
+The header block is a block in base.html that displays the header of the page, and it is redefined in this template. The header block contains a title in an <h1> tag and the title text is defined in the nested title block, which is "Edit "{{ post['title'] }}".
+
+The content block is another block in base.html that displays the main content of the page. It is also redefined in this template. The content block contains a form that allows the user to edit the post's title and body. The form's method attribute is set to post, which means that the form data will be sent to the server using the HTTP POST method.
+
+The label and input tags define a label and an input field for the post's title. The value attribute of the input field is set to either the value from the request.form['title'] or the post's title post['title']. The required attribute indicates that this input field is required and cannot be left empty.
+
+Similarly, the label and textarea tags define a label and a text area for the post's body. The text area's value is set to either the value from the request.form['body'] or the post's body post['body'].
+
+Below the form, there's another form that allows the user to delete the post. The form's action attribute is set to the URL for the delete endpoint, which is {{ url_for('blog.delete', id=post['id']) }}. The method is set to post. The input tag with class="danger" and type="submit" creates a submit button with red text color and the value attribute is set to "Delete". The onclick attribute is set to return confirm('Are you sure?');, which displays a confirm dialog to the user to confirm the deletion before submitting the form. -->
+
+
+

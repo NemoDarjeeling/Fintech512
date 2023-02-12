@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+<!-- {% extends 'base.html' %}: This line tells the template system to extend an existing template file, "base.html", meaning that the content of this file will be inserted into "base.html". The resulting output will be a complete HTML document.
+
+{% block header %}: This line starts a block called "header". A block is a section of a template that can be overridden by a child template. The content of this block will replace the corresponding block in the parent template.
+
+<h1>{% block title %}Posts{% endblock %}</h1>: This line is a HTML tag to display a heading text and a block called "title". The content of this block will replace the corresponding block in the child template.
+
+{% if g.user %}: This line starts a conditional statement. If the value of "g.user" is truthy, meaning it exists and is not empty, the code inside this block will be executed.
+
+<a class="action" href="{{ url_for('blog.create') }}">New</a>: This line is a HTML tag to display a link to create a new post. The "url_for" function generates a URL based on the name of the view function, "blog.create".
+
+{% endblock %}: This line ends the "header" block.
+
+{% block content %}: This line starts a block called "content". The content of this block will replace the corresponding block in the parent template.
+
+{% for post in posts %}: This line starts a for loop. The loop will iterate over a list of posts and the current post will be available in the variable "post" in each iteration.
+
+<article class="post">: This line starts an HTML tag to define a section of the content, which is a post. -->
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1><a href="{{ url_for('blog.detail', id=post['id']) }}">{{ post['title'] }}</a></h1>
+          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+
+    <!-- These lines define the header and content of each blog post. The header contains the title of the post and information about the author and the date the post was created. The title is a hyperlink that leads to the detail page of the post when clicked. The {{ url_for('blog.detail', id=post['id']) }} is a template variable that is evaluated to generate the URL of the detail page.
+
+    Within the header, there is an if statement that checks if the current user is the author of the post. If the user is the author, then an "Edit" link is displayed. The URL for this link is generated using the url_for() function, which generates URLs for views in a Flask application. In this case, the blog.update view is passed the id of the post as an argument.
+    
+    The content of the post is displayed as plain text using the {{ post['body'] }} template variable. -->
+        
+
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+
+    <!-- This if statement checks if the current iteration is the last iteration of the loop. If it's not the last iteration, then an HTML <hr> tag is displayed, which generates a horizontal rule on the page. -->
+
+  {% endfor %}
+{% endblock %}
+

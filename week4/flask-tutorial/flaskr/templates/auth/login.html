@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Log In">
+  </form>
+{% endblock %}
+
+<!-- {% extends 'base.html' %}: This line specifies that the current template extends the base.html template, meaning that it inherits the structure and content of that template.
+
+{% block header %}...{% endblock %}: This block section overwrites the header section in the base.html template. Within this block, a h1 heading is specified with a title block.
+
+<h1>{% block title %}Log In{% endblock %}</h1>: The title block specifies the default title for the page, which is "Log In". This block can be overwritten in other templates that extend from this one.
+
+{% block content %}...{% endblock %}: This block section overwrites the content section in the base.html template. Within this block, a form is specified for the user to log in.
+
+<form method="post">: This specifies that the form is submitted using the HTTP POST method.
+
+<label for="username">Username</label>: A label is specified for the username input field. The for attribute specifies which input field the label is associated with.
+
+<input name="username" id="username" required>: An input field is specified for the username with the name attribute set to "username" and the id attribute set to "username". The required attribute specifies that the input field is required and must be filled in by the user.
+
+<label for="password">Password</label>: A label is specified for the password input field. The for attribute specifies which input field the label is associated with.
+
+<input type="password" name="password" id="password" required>: An input field is specified for the password with the type attribute set to "password", the name attribute set to "password", and the id attribute set to "password". The required attribute specifies that the input field is required and must be filled in by the user.
+
+<input type="submit" value="Log In">: A submit button is specified with the type attribute set to "submit" and the value attribute set to "Log In". -->

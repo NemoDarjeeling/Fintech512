@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{{ post['title'] }}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <p>{{ post['title'] }}</p> 
+    <br>
+    <label for="body">Body</label>
+    <p>{{ post['body'] }}</p>
+    <br>
+    <label for="username">Author</label>
+    <p>{{ post['username']}}</p>
+  </form>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- This is the declaration of the document type, indicating that this is an HTML5 document. -->
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<!-- This line sets the title of the web page. The {% block title %}{% endblock %} syntax indicates that this section of the template can be overridden by a template that extends this one. The - Flaskr is the default title for the page if it is not overridden. -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!-- This line includes a stylesheet in the HTML document by linking to a static file named style.css. The url_for function generates the URL to the style.css file. -->
+<nav>
+  <h1>Flaskr</h1>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+<!-- This section creates the navigation bar for the web page. If a user is logged in (indicated by the existence of g.user), the navigation bar will display the username and a link to log out. If no user is logged in, the navigation bar will display links to register and log in. -->
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+<!-- This section defines the main content of the web page. The {% block header %}{% endblock %} and {% block content %}{% endblock %} syntax allows this section to be overridden by templates that extend this one. The get_flashed_messages() function retrieves any flash messages that have been stored in the session and displays them in the page. -->
