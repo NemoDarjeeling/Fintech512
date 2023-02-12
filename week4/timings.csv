@@ -1,2 +1,4 @@
 # Format: netid, week, Activity (Read/Watch/Do/Coding/...), time in minutes (e.g. 2 hours and 45 minutes would be recorded as 165)
 # example row: pjm52, week1, Read, 180
+hy204, week4, Read/Watch, 150
+hy204, week4, Do, 630
