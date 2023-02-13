@@ -95,6 +95,7 @@ def logout():
     return redirect(url_for('index'))
 
 def login_required(view):
+# view: A view is a representation of an entire system from the perspective of a related set of concerns. It is used to describe the system from the viewpoint of different stakeholders such as end-users, developers, project managers, and testers.
 # It takes a view function as an argument and returns a wrapped version of the view that checks if the user is logged in before executing the view.
     @functools.wraps(view)
     def wrapped_view(**kwargs):
