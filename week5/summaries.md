@@ -12,7 +12,7 @@
 **Summary:** In this chapter, the author introduced JavaScript, a high-level, interpreted, and general-purpose programming language. It is possible for user to run JavaScript in the browser or on the command line, but whichever way we choose, the author suggests using strict mode. Variables in JS are dynamically typed, and its data types are numbers, strings and booleans. Java also supports arrays and objects, though nothing related to OOP. Type coercion is a useful feature of JS, as the computer can help you decide how to reconcile the type conflict. Control structures are similar to that of Java, but JS has ternary conditional operator to make things easier. JS also have functions.  
 **Opinion:** The strength of this chapter might be it provides an introduction to the fundamental concepts of programming with JavaScript, and includes practical examples and exercises to reinforce the learning process. The weakness might be it may require additional resources to gain a deeper understanding of JavaScript programming.
 
-functionally scoped:  
+functionally scoped:
 <pre><code>
 function exampleFunction() {
   var message = "Hello, world!"; // message is only accessible within this function
@@ -34,7 +34,7 @@ const joinedFruits = fruits.join(', ');
 console.log(joinedFruits); // "apple, banana, cherry"
 </code></pre>
 
-for...in not recommended in js:  
+for...in not recommended in js:
 <pre><code>
 const arr = [1, 2, 3];
 arr[10] = 10;
@@ -48,7 +48,7 @@ for (let i in arr) {
 **Summary:**
 **Opinion:**
 
-code before refactoring:  
+code before refactoring:
 <pre><code>
 function statement (invoice, plays) {
   let totalAmount = 0;
@@ -94,7 +94,7 @@ function statement (invoice, plays) {
 }
 </code></pre>
 
-code after first stage refactoring:  
+code after first stage refactoring:
 <pre><code>
 function statement (invoice, plays) {
   let result = `Statement for ${invoice.customer}\n`;
@@ -173,7 +173,7 @@ function createStatementData(invoice, plays) {
   return statementData;
 </code></pre>
 
-polymorphism:  
+polymorphism:
 <code><pre>
 export default function createStatementData(invoice, plays) {
   const result = {};
@@ -182,7 +182,6 @@ export default function createStatementData(invoice, plays) {
   result.totalAmount = totalAmount(result);
   result.totalVolumeCredits = totalVolumeCredits(result);
   return result;
-
   function enrichPerformance(aPerformance) {
     const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
     const result = Object.assign({}, aPerformance);
@@ -203,7 +202,6 @@ export default function createStatementData(invoice, plays) {
       .reduce((total, p) => total + p.volumeCredits, 0);
   }
 }
-
 function createPerformanceCalculator(aPerformance, aPlay) {
     switch(aPlay.type) {
     case "tragedy": return new TragedyCalculator(aPerformance, aPlay);
