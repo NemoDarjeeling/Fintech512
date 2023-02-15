@@ -163,7 +163,6 @@ from nested functions to object attributes:
 function statement (invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
 }
-
 function createStatementData(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
