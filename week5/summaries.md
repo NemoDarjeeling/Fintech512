@@ -178,12 +178,14 @@ export default function createStatementData(invoice, plays) {
   const result = {};
   result.customer = invoice.customer;
   result.performances = invoice.performances.map(enrichPerformance);
+  <!-- This line maps over the array of performances in the invoice object, and for each performance, it calls the enrichPerformance function with the performance as an argument. The result of enrichPerformance is an object that contains additional information about the performance, such as the amount and volumeCredits. -->  
   result.totalAmount = totalAmount(result);
   result.totalVolumeCredits = totalVolumeCredits(result);
   return result;
   function enrichPerformance(aPerformance) {
     const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
     const result = Object.assign({}, aPerformance);
+    <!-- This line creates a new object that is a copy of the aPerformance object, and assigns it to a new variable result. The Object.assign() method is used to copy the properties of the aPerformance object into the new object. By passing an empty object {} as the first argument to Object.assign(), it creates a new object that is a copy of aPerformance, instead of modifying the original aPerformance object. -->
     result.play = calculator.play;
     result.amount = calculator.amount;
     result.volumeCredits = calculator.volumeCredits;
