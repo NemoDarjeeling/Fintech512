@@ -252,6 +252,6 @@ class ComedyCalculator extends PerformanceCalculator {
 **Summary:**
 **Opinion:**
 
-### Extra Work: Chapter 1, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
+### Extra Work: Chapter 2, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
 **Excerpts:** Good Design Is Easier to Change Than Bad Design; DRY—Don't Repeat Yourself; Make It Easy to Reuse; Eliminate Effects Between Unrelated Things; There Are No Final Decisions; Forgo Following Fads;Use Tracer Bullets to Find the Target; Prototype to Learn; Program Close to the Problem Domain; Estimate to Avoid Surprises; Iterate the Schedule with the Code  
 **Summary:** The chapter presents several tips and techniques to help programmers become more effective, such as adopting a "tracer bullet" approach to prototyping and building software incrementally, using automation to reduce the amount of manual work, and continuously improving code through refactoring. The authors also stress the importance of communication, teamwork, and a focus on creating software that meets the needs of users. Overall, the chapter serves as a practical guide to help programmers become more skilled and successful in their work.
