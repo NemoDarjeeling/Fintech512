@@ -1,5 +1,8 @@
 import math
-
+# what should I do? open the test.html in browser and modify statement.js? when following the instructions in the book and the code seprated to 3 diferent files, still works?
+# unable to use node statement.js in command line
+# what do json file do? test cases?
+# possibility to replace js file with python file? where can I get more information on how to do this?
 
 def statement(invoice, plays):
     total_amount = 0
