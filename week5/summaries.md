@@ -44,9 +44,9 @@ for (let i in arr) {
 </code></pre>
 
 ### Title: Chapter 1 of 'Refactoring'; https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/ch01.xhtml#ch01lev1sec1
-**Keywords:** 
-**Summary:**
-**Opinion:**
+**Keywords:** Refactoring; Code improvement; Maintainability; Flexibility; Step-by-step refactoring; Extracting methods; Creating objects
+**Summary:** In this chapter, the example code is a statement generating program that produces a statement for a theatre show to the customer. Fowler identifies several problems with the code, such as long methods, duplicated code, and confusing variable names. He then walks through a step-by-step refactoring process to address these issues, during which he identifies three major stages to this refactoring episode: decomposing the original function into a set of nested functions, using Split Phase to separate the calculation and printing code, and finally introducing a polymorphic calculator for the calculation logic. Fowler also repeatedly emphasize the importance of iterating such process: making small changes - test - commit.    
+**Opinion:** The strength of this chapter might be it provides a clear and practical introduction to the concept of refactoring and why it is important for improving the design of existing code. The weakness might be the author uses javascript and may be difficult for readers who are not familiar with this language.
 
 code before refactoring:
 <pre><code>
