@@ -79,12 +79,12 @@ function statement (invoice, plays) {
         throw new Error(`unknown type: ${play.type}`);
     }
 
-    // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    // add extra credit for every ten comedy attendees
+    // add volume credits.  
+    volumeCredits += Math.max(perf.audience - 30, 0);  
+    // add extra credit for every ten comedy attendees  
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
 
-    // print line for this order
+    // print line for this order.  
     result += `  ${play.name}: ${format(thisAmount/100)} (${perf.audience} seats)\n`;
     totalAmount += thisAmount;
   }
@@ -158,7 +158,7 @@ function statement (invoice, plays) {
 }
 </code></pre>
 
-from nested functions to object attributes:  
+from nested functions to object attributes:
 <code><pre>
 function statement (invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
