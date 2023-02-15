@@ -13,7 +13,7 @@
 **Opinion:** The strength of this chapter might be it provides an introduction to the fundamental concepts of programming with JavaScript, and includes practical examples and exercises to reinforce the learning process. The weakness might be it may require additional resources to gain a deeper understanding of JavaScript programming.
 
 functionally scoped:  
-<pre><code>  
+<pre><code>
 function exampleFunction() {
   var message = "Hello, world!"; // message is only accessible within this function
   console.log(message);
@@ -28,20 +28,20 @@ exampleFunction(); // output: "Hello, world!"
 </code></pre>  
 
 join()
-"  
+<pre><code>
 const fruits = ['apple', 'banana', 'cherry'];
 const joinedFruits = fruits.join(', ');
 console.log(joinedFruits); // "apple, banana, cherry"
-"  
+</code></pre>
 
 for...in not recommended in js:  
-"  
+<pre><code>
 const arr = [1, 2, 3];
 arr[10] = 10;
 for (let i in arr) {
   console.log(i); // logs "0", "1", "2", "10"
 }
-"  
+</code></pre>
 
 ### Title: Chapter 1 of 'Refactoring'; https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/ch01.xhtml#ch01lev1sec1
 **Keywords:** 
@@ -49,7 +49,7 @@ for (let i in arr) {
 **Opinion:**
 
 code before refactoring:  
-"  
+<pre><code>
 function statement (invoice, plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
@@ -92,10 +92,10 @@ function statement (invoice, plays) {
   result += `You earned ${volumeCredits} credits\n`;
   return result;
 }
-"  
+</code></pre>
 
 code after first stage refactoring:  
-"  
+<pre><code>
 function statement (invoice, plays) {
   let result = `Statement for ${invoice.customer}\n`;
   for (let perf of invoice.performances) {
@@ -156,10 +156,10 @@ function statement (invoice, plays) {
     return result;
   }
 }
-"  
+</code></pre>
 
 from nested functions to object attributes:  
-"  
+<code><pre>
 function statement (invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
 }
@@ -171,10 +171,10 @@ function createStatementData(invoice, plays) {
   statementData.totalAmount = totalAmount(statementData);
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
   return statementData;
-"  
+</code></pre>
 
 polymorphism:  
-"  
+<code><pre>
 export default function createStatementData(invoice, plays) {
   const result = {};
   result.customer = invoice.customer;
@@ -245,7 +245,7 @@ class ComedyCalculator extends PerformanceCalculator {
     return super.volumeCredits + Math.floor(this.performance.audience / 5);
   }
 }
-"  
+</code></pre>
 
 ### Title: 'Automated Testing with Mocha'; https://javascript.info/testing-mocha 
 **Keywords:** 
