@@ -193,12 +193,10 @@ export default function createStatementData(invoice, plays) {
     return plays[aPerformance.playID]
   }
   function totalAmount(data) {
-    return data.performances
-      .reduce((total, p) => total + p.amount, 0);
+    return data.performances.reduce((total, p) => total + p.amount, 0);
   }
   function totalVolumeCredits(data) {
-    return data.performances
-      .reduce((total, p) => total + p.volumeCredits, 0);
+    return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
   }
 }
 function createPerformanceCalculator(aPerformance, aPlay) {
@@ -206,7 +204,7 @@ function createPerformanceCalculator(aPerformance, aPlay) {
     case "tragedy": return new TragedyCalculator(aPerformance, aPlay);
     case "comedy" : return new ComedyCalculator(aPerformance, aPlay);
     default:
-        throw new Error(`unknown type: ${aPlay.type}`);
+      throw new Error(`unknown type: ${aPlay.type}`);
     }
 }
 class PerformanceCalculator {
