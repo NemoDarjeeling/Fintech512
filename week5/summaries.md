@@ -158,7 +158,7 @@ function statement (invoice, plays) {
 }
 </code></pre>
 
-from nested functions to object attributes:  
+from nested functions to object attributes:
 <code><pre>
 function statement (invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
