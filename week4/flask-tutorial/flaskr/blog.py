@@ -27,7 +27,7 @@ def index():
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
+        ' ORDER BY created DESC' # 删除所有分行和中间的引号然后组成一行sql命令是可行的
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
