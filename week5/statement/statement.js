@@ -2,10 +2,21 @@ function statement(invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
 }
 
+function createPerformanceCalculator(aPerformance, aPlay) {
+  return new PerformanceCalculator(aPerformance, aPlay);
+}
+
 class PerformanceCalculator {
   constructor(aPerformance, aPlay) {
     this.performance = aPerformance;
     this.play = aPlay
+  }
+
+  get volumeCredits(){
+    let result = 0;
+    result += Math.max(this.performance.audience - 30, 0);
+    if ("comedy" === this.play.type) result += Math.floor(this.performance.audience / 5);
+    return result;
   }
 
   get amount() {
@@ -40,11 +51,11 @@ function createStatementData(invoice, plays) {
   return statementData;
   
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance));
+    const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
     const result = Object.assign({}, aPerformance);
     result.play = calculator.play;
     result.amount = calculator.amount;
-    result.volumeCredits = volumeCreditsFor(result);
+    result.volumeCredits = calculator.volumeCredits;
     return result;
   }
 
@@ -56,17 +67,6 @@ function createStatementData(invoice, plays) {
   function totalVolumeCredits(data) {
     return data.performances
       .reduce((total, p) => total + p.volumeCredits, 0);
-  }
-
-  function volumeCreditsFor(aPerformance) {
-    let result = 0;
-    result += Math.max(aPerformance.audience - 30, 0);
-    if ("comedy" === aPerformance.play.type) result += Math.floor(aPerformance.audience / 5);
-    return result;
-  }
-
-  function amountFor(aPerformance) {
-    return new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount;
   }
 
   function playFor(aPerformance) {
