@@ -83,29 +83,19 @@
 ### Slide Statements  
 "Slide Statements" is a refactoring technique that involves reordering the statements in a block of code to improve its readability and maintainability.   
   
-            def process_orders(orders):
-                for order in orders:
-                    if order['status'] == 'pending':
-                        update_order_status(order, 'processing')
-                        notify_customer(order)
-                    elif order['status'] == 'processing':
-                        ship_order(order)
-                        update_order_status(order, 'shipped')
-                    elif order['status'] == 'shipped':
-                        archive_order(order)
-                        update_order_status(order, 'archived')
-            
-            def process_orders(orders):
-                for order in orders:
-                    if order['status'] == 'pending':
-                        update_order_status(order, 'processing')
-                        notify_customer(order)
-                    elif order['status'] == 'processing':
-                        ship_order(order)
-                        update_order_status(order, 'shipped')
-                    else:
-                        archive_order(order)
-                        update_order_status(order, 'archived')
+            a = 0;
+            b = 1;
+            ...a bunch of other code...
+            def add_numbers(a, b):
+                result = a + b
+                return result
+  
+            ...a bunch of other code...
+            a = 0;
+            b = 1;
+            def add_numbers(a, b):
+                result = a + b
+                return result
   
 ### Extract Temp with Query  
 "Extract Temp with Query" is a refactoring technique that involves replacing a temporary variable in a method with a query that calculates the value of that variable.
