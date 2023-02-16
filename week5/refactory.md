@@ -1,5 +1,6 @@
 ### Extract Function  
-"Extract Function" is a refactoring technique that involves taking a section of code from within a larger function and turning it into its own separate function. This can improve the readability, maintainability, and reusability of the code by making it more modular and easier to understand.  
+"Extract Function" is a refactoring technique that involves taking a section of code from within a larger function and turning it into its own separate function. This can improve the readability, maintainability, and reusability of the code by making it more modular and easier to understand.
+    
         def calculate_total_price(cart_items, discount_percent):
             total_price = 0
             for item in cart_items:
