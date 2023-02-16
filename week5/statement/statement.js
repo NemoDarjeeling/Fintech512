@@ -2,6 +2,13 @@ function statement(invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays));
 }
 
+class PerformanceCalculator {
+  constructor(aPerformance, aPlay) {
+    this.performance = aPerformance;
+    this.play = aPlay
+  }
+}
+
 function createStatementData(invoice, plays) {
   const statementData = {}
   statementData.customer = invoice.customer;
@@ -12,8 +19,9 @@ function createStatementData(invoice, plays) {
   
 
   function enrichPerformance(aPerformance) {
+    const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance));
     const result = Object.assign({}, aPerformance);
-    result.play = playFor(result);
+    result.play = calculator.play;
     result.amount = amountFor(result);
     result.volumeCredits = volumeCreditsFor(result);
     return result;
@@ -63,7 +71,11 @@ function createStatementData(invoice, plays) {
   }
 }
 
-function renderPlainText(data, plays) {
+function usd(aNumber) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format(aNumber);
+}
+
+function renderPlainText(data) {
   let result = `Statement for ${data.customer}\n`;
   for (let perf of data.performances) {
     result += `  ${perf.play.name}: ${usd(perf.amount/100)} (${perf.audience} seats)\n`;
@@ -71,18 +83,25 @@ function renderPlainText(data, plays) {
   result += `Amount owed is ${usd(data.totalAmount/100)}\n`;
   result += `You earned ${data.totalVolumeCredits} credits\n`;
   return result;
-
-
-
-  function usd(aNumber) {
-    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format(aNumber);
-  }
-
-
-
-
 }
 
+function htmlStatement (invoice, plays) {
+  return renderHtml(createStatementData(invoice, plays));
+}
+
+function renderHtml (data) {
+  let result = `<h1>Statement for ${data.customer}</h1>\n`;
+  result += "<table>\n";
+  result += "<tr><th>play</th><th>seats</th><th>cost</th></tr>";
+  for (let perf of data.performances) {
+    result += `  <tr><td>${perf.play.name}</td><td>${perf.audience}</td>`;
+    result += `<td>${usd(perf.amount/100)}</td></tr>\n`;
+  }
+  result += "</table>\n";
+  result += `<p>Amount owed is <em>${usd(data.totalAmount/100)}</em></p>\n`;
+  result += `<p>You earned <em>${data.totalVolumeCredits}</em> credits</p>\n`;
+  return result;
+}
 
 
 
