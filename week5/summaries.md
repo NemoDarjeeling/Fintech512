@@ -245,14 +245,10 @@ class ComedyCalculator extends PerformanceCalculator {
 </code></pre>
 
 ### Title: 'Automated Testing with Mocha'; https://javascript.info/testing-mocha 
-**Keywords:** 
 **Summary:**
-**Opinion:**
 
 ### Title: 'Getting Started in JavaScript'; https://plotly.com/javascript/getting-started/
-**Keywords:** 
 **Summary:**
-**Opinion:**
 
 ### Extra Work: Chapter 2, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
 **Excerpts:** Good Design Is Easier to Change Than Bad Design; DRY—Don't Repeat Yourself; Make It Easy to Reuse; Eliminate Effects Between Unrelated Things; There Are No Final Decisions; Forgo Following Fads;Use Tracer Bullets to Find the Target; Prototype to Learn; Program Close to the Problem Domain; Estimate to Avoid Surprises; Iterate the Schedule with the Code  
