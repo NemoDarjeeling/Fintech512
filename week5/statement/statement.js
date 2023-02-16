@@ -51,10 +51,6 @@ function renderPlainText(data, plays) {
     return result;
   }
 
-  function playFor(aPerformance) {
-    return plays[aPerformance.playID];
-  }
-
   function amountFor(aPerformance) {
     let result = 0;
     switch (aPerformance.play.type) {
@@ -77,6 +73,9 @@ function renderPlainText(data, plays) {
     return result;
   }
 }
+
+
+
 
 
 
