@@ -173,8 +173,7 @@ function createStatementData(invoice, plays) {
 </code></pre>
 
 polymorphism:
-<code><pre>
-export default function createStatementData(invoice, plays) {
+<code><pre>export default function createStatementData(invoice, plays) {
   const result = {};
   result.customer = invoice.customer;
   result.performances = invoice.performances.map(enrichPerformance);
@@ -241,15 +240,14 @@ class ComedyCalculator extends PerformanceCalculator {
   get volumeCredits() {
     return super.volumeCredits + Math.floor(this.performance.audience / 5);
   }
-}
-</code></pre>
+}</code></pre>
 
 ### Title: 'Automated Testing with Mocha'; https://javascript.info/testing-mocha 
-**Summary:**
-
+**Summary:** "Automated Testing with Mocha" is a comprehensive guide on using Mocha for JavaScript testing, covering the basics of writing tests, using assertion libraries, and organizing tests. It also covers advanced topics such as testing asynchronous code, running tests in a browser, and code coverage tools. The guide is a valuable resource for improving the quality and reliability of JavaScript code.
+  
 ### Title: 'Getting Started in JavaScript'; https://plotly.com/javascript/getting-started/
-**Summary:**
-
+**Summary:** "Getting Started in JavaScript" is a guide that introduces the basics of JavaScript programming language and how to get started with Plotly, a data visualization library. The guide covers topics such as setting up a development environment, writing and running basic JavaScript code, and creating simple Plotly charts. It provides a step-by-step approach to learning JavaScript and Plotly, making it a useful resource for beginners.
+  
 ### Extra Work: Chapter 2, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
 **Excerpts:** Good Design Is Easier to Change Than Bad Design; DRY—Don't Repeat Yourself; Make It Easy to Reuse; Eliminate Effects Between Unrelated Things; There Are No Final Decisions; Forgo Following Fads;Use Tracer Bullets to Find the Target; Prototype to Learn; Program Close to the Problem Domain; Estimate to Avoid Surprises; Iterate the Schedule with the Code  
 **Summary:** The chapter presents several tips and techniques to help programmers become more effective, such as adopting a "tracer bullet" approach to prototyping and building software incrementally, using automation to reduce the amount of manual work, and continuously improving code through refactoring. The authors also stress the importance of communication, teamwork, and a focus on creating software that meets the needs of users. Overall, the chapter serves as a practical guide to help programmers become more skilled and successful in their work.
