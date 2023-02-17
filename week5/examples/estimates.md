@@ -1,3 +1,5 @@
+### estimations for the steps are here:  
+
 Create a new Flask application;  
 Define the invoice and plays dictionaries that will be used in the statement function;  
 Import the Blueprint class from Flask and create a new blueprint called "examples";  
