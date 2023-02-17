@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Invoice Statement</title>
+  </head>
+  <body>
+    <h1>Statement for {{ customer }}</h1>
+    <table>
+      <tr>
+        <th>play</th>
+        <th>seats</th>
+        <th>cost</th>
+      </tr>
+      {% for perf in performances %}
+      <tr>
+        <td>{{ perf.playID }}</td>
+        <td>{{ perf.audience }}</td>
+        <td>{{ format_as_dollars(get_amount_for_performance(perf)/100) }}</td>
+      </tr>
+      {% endfor %}
+      <tr></tr>
+      <tr></tr>
+      <tr>
+        <td>Amount owed is</td> 
+        <td><em>{{ format_as_dollars(get_total_amount/100) }}</em></td>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+      <tr>
+        <td>You earned</td>
+        <td><em>{{ volume_credits }}</em></td> 
+        <td>credits</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
