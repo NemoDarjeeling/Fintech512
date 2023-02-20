@@ -5,4 +5,4 @@ To-dos, time_actuals(min), difference
 4, 30, no big difference to create route and function, but what to render is a big problem, because I don't have a python version of htmlStatement()
 5, 80, since I have to render statement.html and some other variables during invoice calculation, so I have to split the original python file, making multiple functions to render to the html to calculate
 6, 5, --
-7, 65, nightmare came when I have to create a static folder to contain all data files and index.js, it just won't work to connect to index.js by just copying the original charting folder into template folder, I have to reorganize the configuration and change some link in examples.py, index.js and index.html
+7, 65, nightmare came when I have to create a static folder to contain all data files and index.js, it just won't work to connect to index.js by just copying the original charting folder into template folder, I have to reorganize the configuration and change some link in examples.py, index.js and index.html, might be that I'm using js rather than py to organize the stockchart app

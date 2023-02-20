@@ -1,7 +1,8 @@
 from flask import Flask, render_template
-
+# dude, you forget to set the BluePrint "/examples"!
 app = Flask(__name__, static_url_path='/static')
-#make it possible to run flask app by .py file name
+# make it possible to run flask app by .py file name
+# static is a norm, includes is a older one, but static is a predetermined built-in folder for flask to find js and data
 
 import math
 
@@ -64,6 +65,7 @@ def get_volume_credits():
 def statement():
     return render_template('statement.html', customer = invoice["customer"], performances = invoice["performances"], plays = plays, format_as_dollars = format_as_dollars, get_amount_for_performance = get_amount_for_performance, get_total_amount=get_total_amount(), volume_credits=get_volume_credits())
 # render 
+# just write a function which writes html in statement.py file!
 
 @app.route('/stockchart')
 def stockchart():

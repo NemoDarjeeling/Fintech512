@@ -1,0 +1,12 @@
+step,task description,esitimated time
+1,set up a flask application,20min+
+2,"introduction" note/bp,10min+
+3,"subscribers" note/bp,10min+
+3,put a icon on the BigBuck introduction html called "example portfolio",20min+
+4,set up a asset DB,unknown...
+5,linking Big Buck app with asset DB,40min+
+6,enable the user to click on "example portfolio",40min+
+7,show text describing the feature of this example portfolio after clicking,60min+
+8,show the example portfolio itself on the page,60min+
+9,enable "subscribers" users to see charting and analysis results of the portfolio,80min+
+10,set buy/sell features, but left them unimplemented/disabled,20min+(unimplemented)
