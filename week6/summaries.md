@@ -7,11 +7,14 @@
 * First paragraph: describe the main points of the paper/video.
 * Second paragraph: Present the paper/video's strengths and weaknesses from your point of view.
 
+### Are We There Yet? Agile Situational Awareness Using Estimation; https://www.youtube.com/watch?v=DyltKNFkZk8
+**Summary**:
+**Keywords**:
+**Opinions**:
 
 
 
-
-### Extra Work: Chapter 2, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
+### Extra Work: Chapter 3, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition  
 **Excerpts:**  
 Keep Knowledge in Plain Text;  
 Use the Power of Command Shells;  
