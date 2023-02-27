@@ -1,0 +1,1 @@
+ The time cost of one paticular step is much higher, as I am not familiar with GET and POST in flaskr. I should understand them before start coding.
