@@ -527,7 +527,9 @@ FROM table_name
 WHERE CONTAINS(column_name, 'search_criteria');  
 ### SQLite commands
 start:
-        sqlite3
+'''
+sqlite3
+'''
 
 
 
