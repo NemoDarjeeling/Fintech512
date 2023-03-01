@@ -351,6 +351,7 @@ COMMIT;
 In this transaction, two UPDATE statements are executed to subtract $100 from account 123 and add $100 to account 456. If both statements complete successfully, the changes are committed to the database using the COMMIT statement. If any of the statements fail, the transaction is rolled back using the ROLLBACK statement, and the database is returned to its previous state.  
 ### data type
 Storage Class | Meaning
+--- | --- 
 NULL | NULL values mean missing information or unknown.
 INTEGER | Integer values are whole numbers (either positive or negative). An integer can have variable sizes such as 1, 2,3, 4, or 8 bytes.
 REAL | Real values are real numbers with decimal values that use 8-byte floats.
