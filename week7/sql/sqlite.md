@@ -341,3 +341,21 @@ REPLACE INTO table(column_list)
 VALUES(value_list);  
 if there is no value_list in column_list, REPLACE is like INSERT; if there is, REPLACE really replace.  
 ### transaction
+In SQL, a transaction is a sequence of one or more SQL statements that are executed as a single, atomic unit of work. A transaction is a fundamental concept in database management systems (DBMS), which allows multiple users to access and manipulate the same data concurrently while maintaining the consistency, isolation, and durability of the data.  
+BEGIN TRANSACTION;
+  
+UPDATE accounts SET balance = balance - 100 WHERE account_id = 123;
+UPDATE accounts SET balance = balance + 100 WHERE account_id = 456;
+COMMIT;  
+  
+In this transaction, two UPDATE statements are executed to subtract $100 from account 123 and add $100 to account 456. If both statements complete successfully, the changes are committed to the database using the COMMIT statement. If any of the statements fail, the transaction is rolled back using the ROLLBACK statement, and the database is returned to its previous state.  
+### data type
+Storage Class | Meaning
+NULL | NULL values mean missing information or unknown.
+INTEGER | Integer values are whole numbers (either positive or negative). An integer can have variable sizes such as 1, 2,3, 4, or 8 bytes.
+REAL | Real values are real numbers with decimal values that use 8-byte floats.
+TEXT | TEXT is used to store character data. The maximum length of TEXT is unlimited. SQLite supports various character encodings.
+BLOB | BLOB stands for a binary large object that can store any kind of data. The maximum size of BLOB is, theoretically, unlimited.
+
+
+
