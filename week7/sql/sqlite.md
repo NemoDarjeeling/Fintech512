@@ -357,6 +357,180 @@ INTEGER | Integer values are whole numbers (either positive or negative). An int
 REAL | Real values are real numbers with decimal values that use 8-byte floats.
 TEXT | TEXT is used to store character data. The maximum length of TEXT is unlimited. SQLite supports various character encodings.
 BLOB | BLOB stands for a binary large object that can store any kind of data. The maximum size of BLOB is, theoretically, unlimited.
+### create table
+CREATE TABLE (如果需要给表命名，在这里命名)[IF NOT EXISTS]（如果不存在，创建新表格；如果存在，则不操作） [schema_name]（隶属于哪一个schema.sql）.table_name (
+	column_1 data_type PRIMARY KEY,（a primary key is a column or set of columns that uniquely identifies each row in a table. It is used to enforce the entity integrity constraint, which requires that each row in a table be uniquely identifiable.）
+   	column_2 data_type NOT NULL,
+	column_3 data_type DEFAULT 0,
+	table_constraints
+) [WITHOUT ROWID];（每行不会显示默认行数id）  
+### alter table
+*rename a table*  
+ALTER TABLE existing_table
+RENAME TO new_table;  
+*add a new column*  
+ALTER TABLE table_name
+ADD COLUMN column_definition;  
+*rename a column*
+ALTER TABLE table_name
+RENAME COLUMN current_name TO new_name;  
+### drop table
+ALTER TABLE table_name
+RENAME COLUMN current_name TO new_name;  
+### vacuum
+In SQL, VACUUM is a command used to reclaim unused space and defragment the database file, reducing the file size and improving performance. It is used to free up space from deleted records and rows, which are marked as unused but not physically removed from the database file.  
+VACUUM;
+or  
+PRAGMA auto_vacuum = FULL;  
+### primary key
+A primary key is a column or group of columns used to identify the uniqueness of rows in a table. Each table has one and only one primary key.  
+one primary key:  
+CREATE TABLE table_name(
+   column_1 INTEGER NOT NULL PRIMARY KEY,
+   ...
+);  
+multiple primary key:  
+CREATE TABLE table_name(
+   column_1 INTEGER NOT NULL,
+   column_2 INTEGER NOT NULL,
+   ...
+   PRIMARY KEY(column_1,column_2,...)
+);  
+*If a table has the primary key that consists of one column, and that column is defined as INTEGER then this primary key column becomes an alias for the rowid column.*  
+*if you declare a column with the INTEGER type and PRIMARY KEY DESC clause, this column will not become an alias for the rowid column*
+### not null constraint
+By default, all columns in a table accept NULL values except you explicitly use NOT NULL constraints.  
+CREATE TABLE table_name (
+    ...,
+    column_name type_name NOT NULL,
+    ...
+);  
+### unique constraint
+A UNIQUE constraint ensures all values in a column or a group of columns are distinct from one another or unique.  
+column level:  
+CREATE TABLE table_name(
+    ...,
+    column_name type UNIQUE,
+    ...
+);  
+table level:  
+CREATE TABLE table_name(
+    ...,
+    UNIQUE(column_name)
+);  
+### check constraint
+SQLite CHECK constraints allow you to define expressions to test values whenever they are inserted into or updated within a column.  
+*check at column level:*  
+CREATE TABLE table_name(
+    ...,
+    column_name data_type CHECK(expression),
+    ...
+);   
+CREATE TABLE contacts (
+    contact_id INTEGER PRIMARY KEY,
+    first_name TEXT    NOT NULL,
+    last_name  TEXT    NOT NULL,
+    email      TEXT,
+    phone      TEXT    NOT NULL
+                    CHECK (length(phone) >= 10) 
+);  
+*check at table level:*  
+CREATE TABLE table_name(
+    ...,
+    CHECK(expression)
+);  
+CREATE TABLE products (
+    product_id   INTEGER         PRIMARY KEY,
+    product_name TEXT            NOT NULL,
+    list_price   DECIMAL (10, 2) NOT NULL,
+    discount     DECIMAL (10, 2) NOT NULL
+                                DEFAULT 0,
+    CHECK (list_price >= discount AND 
+        discount >= 0 AND 
+        list_price >= 0) 
+);  
+### autoincrement  
+SQLite recommends that you should not use AUTOINCREMENT attribute because:
+The AUTOINCREMENT keyword imposes extra CPU, memory, disk space, and disk I/O overhead and should be avoided if not strictly needed. It is usually not needed.
+In addition, the way SQLite assigns a value for the AUTOINCREMENT column slightly different from the way it does for the rowid column.  
+### create view
+In database theory, a view is a result set of a stored query. A view is the way to pack a query into a named object stored in the database. （符合条件的一组查询，可以理解为编程中的method，之后就照名字call就可以了）  
+CREATE [TEMP] (使用TEMP表示你希望这个view只与当前数据库有联系，当前数据库关闭，这玩意也就没了) VIEW [IF NOT EXISTS] view_name[(column-name-list)] (This is useful when you want to create a view that contains only a subset of the columns from the underlying tables. 如果不说明，那就是符合select条件的整个表)
+AS 
+   select-statement;  
+### drop view
+DROP VIEW [IF EXISTS] (不存在就啥都不干) [schema_name.]view_name;（在本地唯一的db上操作可以不说明schema_name）  
+### index
+an index is a data structure that provides quick access to data in a table based on the values in one or more columns. Each index must be associated with a specific table. An index consists of one or more columns, but all columns of an index must be in the same table. A table may have multiple indexes.  
+*create:*  
+CREATE [UNIQUE] INDEX index_name 
+ON table_name(column_list);  
+*drop:*  
+DROP INDEX [IF EXISTS] index_name;
+### expression-based index
+CREATE INDEX name_index ON employees(first_name || ' ' || last_name);  
+This creates an index on the concatenated string of the first and last names of each employee in the employees table. Same to use SELECT, FROM, WHERE, ORDER BY, just faster.  
+### trigger
+An SQLite trigger is a named database object that is executed automatically when an INSERT, UPDATE or DELETE statement is issued against the associated table. 
+*create:*   
+CREATE TRIGGER [IF NOT EXISTS] trigger_name 
+   [BEFORE|AFTER|INSTEAD OF] (trigger在遇到命令的‘什么时候’应该被触发？) [INSERT|UPDATE|DELETE] （trigger遇到‘什么命令’的时候应该被触发？）
+   ON table_name
+   [WHEN condition]
+BEGIN
+ statements;
+END;
+
+real example:  
+CREATE TRIGGER validate_email_before_insert_leads 
+   BEFORE INSERT 
+   ON leads
+BEGIN
+   SELECT
+      CASE
+	WHEN NEW.email NOT LIKE '%_@__%.__%' THEN (new用来指代新加的那一行，.email表示我们关注的是邮箱地址这一列)
+   	  RAISE (ABORT,'Invalid email address') （To validate the email, we used the LIKE operator to determine whether the email is valid or not based on the email pattern. If the email is not valid, the RAISE function aborts the insert and issues an error message.）
+       END;
+END;  
+  
+*drop:*
+DROP TRIGGER [IF EXISTS] trigger_name;  
+### instead of triggers
+In SQLite, an INSTEAD OF trigger can be only created based on a view, not a table: the INSTEAD OF triggers allow read-only views to become modifiable.  
+CREATE TRIGGER [IF NOT EXISTS] schema_ame.trigger_name
+    INSTEAD OF [DELETE | INSERT | UPDATE OF column_name]
+    ON table_name
+BEGIN
+    -- insert code here
+END;  
+  
+real example:  
+CREATE TRIGGER insert_artist_album_trg
+    INSTEAD OF INSERT ON AlbumArtists
+BEGIN
+    -- insert the new artist first
+    INSERT INTO Artists(Name)
+    VALUES(NEW.ArtistName);
+    
+    -- use the artist id to insert a new album
+    INSERT INTO Albums(Title, ArtistId)
+    VALUES(NEW.AlbumTitle, last_insert_rowid());
+END;  
+### full-text search
+virtual table: when you access a virtual table, SQLite calls the custom code to get the data. The custom code can have specified logic to handle certain tasks such as getting data from multiple data sources.  
+full-text search in SQL is a technique used to search for text within a large amount of unstructured or semi-structured data. It requires the creation of a full-text index and the use of specialized search functions such as CONTAINS or FREETEXT.(纯数据库技巧或许处理结构化的数据很有用，但是“用户-帖子”的twitter中找关键字就很不好使了)   
+CREATE VIRTUAL TABLE table_name 
+USING FTS5(column1,column2...);  
+   
+SELECT column_list
+FROM table_name
+WHERE CONTAINS(column_name, 'search_criteria');  
+### SQLite commands
+start:
+        sqlite3
+
+
+
 
 
 
