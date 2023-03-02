@@ -555,8 +555,51 @@ if you have a file called commands.txt with all SQL command in it:
 > sqlite> .mode column
 > sqlite> .header on
 > sqlite> .read ./commands.txt  
-
-
+show all tables in db by SQL command:  
+> SELECT name FROM sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';  
+show the structure of table:  
+> sqlite> .header on
+> sqlite> .mode column
+> sqlite> pragma table_info('TABLENAME');  
+show the structure of table by SQL command:  
+> SELECT sql FROM sqlite_schema WHERE name = 'albums';  
+converts the entire structure and data of an SQLite database into a single text file:  
+on screen:  
+> .dump  
+to a file:  
+> .output ./FILENAME.sql
+> .dump  
+dump a specific table to a file:  
+> .output ./FILENAME.sql
+> .dump TABLENAME
+> .quit  
+(.quit is a shortcut for .exit with an exit code of zero and does not save changes made to the database, while .exit can be used to specify an exit code other than zero and saves changes made to the database before exiting.)  
+dump table only using schema command to a file:  
+> .output ./FILENAME.sql
+> .schema
+> .quit
+(.dump generates SQL statements that recreate the entire contents of the database, while .schema generates SQL commands that describe the structure of the database but do not contain any data.)  
+dump table data into a file:  
+> .mode insert  
+> .output FILENAME.sql
+> SELECT * FROM TABLENAME  
+(.mode insert is a command that changes the output mode of the SQLite command-line interface to "insert" mode. In insert mode, the output of queries is formatted as a series of INSERT statements that can be used to recreate the current state of the database.)  
+import csv into table:  
+> .mode csv
+> .import ./CSVFILE.csv TABLENAME  
+to verify the import:  
+> .schema TABLENAME  
+export db to csv file:  
+>sqlite3 c:/sqlite/chinook.db
+> .headers on
+> .mode csv
+> .output data.csv
+> SELECT customerid,
+...>        firstname,
+...>        lastname,
+...>        company
+...>   FROM customers;
+> .quit
 
 
 
