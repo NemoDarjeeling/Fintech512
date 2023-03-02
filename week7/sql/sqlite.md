@@ -546,7 +546,15 @@ show the structure of a table (how it is created, what column does it contain...
 > .schema TABLENAME  
 show the structure of all tables
 > .fullschema
-
+show indexes:  
+> .indexes  
+> .indexes TABLENAME
+> .indexes %s  
+execute SQL statement from file:  
+if you have a file called commands.txt with all SQL command in it:  
+> sqlite> .mode column
+> sqlite> .header on
+> sqlite> .read ./commands.txt  
 
 
 
