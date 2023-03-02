@@ -25,7 +25,10 @@ ORDER BY
     Composer NULLS LAST;（按composer一列升序排列，但是将所有NULL置于最后）  
 ### select distinct
 an optional clause of the  SELECT statement. The DISTINCT clause allows you to remove the duplicate rows in the result set.  
-SQLite considers NULL values as duplicates. If you use theDISTINCT clause with a column that has NULL values, SQLite will keep one row of a NULL value.  
+SQLite considers NULL values as duplicates. If you use theDISTINCT clause with a column that has NULL values, SQLite will keep one row of a NULL value. 
+## count 
+count(columnName)  
+return the count for the number of the column
 ## where
 In SQLite, the WHERE clause is used in a SQL statement to filter the result set based on a specified condition. It allows you to retrieve specific records from a table that meet certain criteria.  
 SELECT 
@@ -557,10 +560,10 @@ if you have a file called commands.txt with all SQL command in it:
 > sqlite> .read ./commands.txt  
 show all tables in db by SQL command:  
 > SELECT name FROM sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';  
-show the structure of table:  
+**show the structure of table:**  
 > sqlite> .header on
 > sqlite> .mode column
-> sqlite> pragma table_info('TABLENAME');  
+> sqlite> pragma table_info('TABLENAME');(这是最重要的一句，只打这句也行)  
 show the structure of table by SQL command:  
 > SELECT sql FROM sqlite_schema WHERE name = 'albums';  
 converts the entire structure and data of an SQLite database into a single text file:  
