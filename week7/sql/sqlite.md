@@ -528,7 +528,24 @@ WHERE CONTAINS(column_name, 'search_criteria');
 ### SQLite commands
 start:   
 > sqlite3  
-
+open file:  
+> .open FILENAME  
+start and open:  
+> sqlite3 c:\sqlite\db\chinook.db  
+help:  
+> .help  
+show route of existing db:  
+> .database  
+exit:  
+> .exit  
+show all tables in current db:  
+> .tables  
+show all tables with special pattern（例如包含某个字符段）in current db:  
+> .tables '%s'  
+show the structure of a table (how it is created, what column does it contain...)
+> .schema TABLENAME  
+show the structure of all tables
+> .fullschema
 
 
 
