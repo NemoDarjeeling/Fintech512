@@ -1,11 +1,13 @@
 1. 59 
 SELECT COUNT(*) from customers  
 2. Rock 
-SELECT tmp.GenreId
-,g.name
-FROM (SELECT t.GenreId
-,SUM(i.Quantity)
-FROM invoice_items i
+SELECT 
+    tmp.GenreId,
+    g.name
+FROM 
+    (SELECT t.GenreId
+    ,SUM(i.Quantity)
+    FROM invoice_items i
 LEFT JOIN tracks t
 ON i.trackId = t.trackId
 GROUP BY genreId
@@ -68,3 +70,5 @@ FROM customers c
 LEFT JOIN invoices i ON c.CustomerId = i.CustomerId
 GROUP BY c.CustomerId
 ORDER BY SUM(Total) DESC;
+
+end of file
