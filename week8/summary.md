@@ -39,4 +39,4 @@ Keep It Simple and Minimize Attack Surfaces;
 Apply Security Patches Quickly;  
 Name Well; Rename When Needed;  
 **Summary:**  
-Chapter 7 of "The Pragmatic Programmer" provides practical tips for coding efficiently and effectively. The authors suggest asking questions and seeking feedback, working in small increments, using automation tools, and creating a build pipeline. They also emphasize the importance of version control, clean code, testing, and continuous learning. 
+Chapter 7 of "The Pragmatic Programmer" provides practical tips for coding efficiently and effectively. The authors suggest asking questions and seeking feedback, working in small increments, using automation tools, and creating a build pipeline. They also emphasize the importance of version control, clean code, testing, and continuous learning.  
