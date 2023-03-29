@@ -53,4 +53,24 @@ Don't Think Outside the Box—Find the Box;
 Don't Go into the Code Alone;  
 Agile Is Not a Noun; Agile Is How You Do Things(what do we do: work out where you are; make the smallest meaningful step towards where you want to be; evaluate where you end up, and fix anything you broke);    
 **Summary:**
-Chapter 8 of "The Pragmatic Programmer" covered the issues of acquiring and managing requirements in software development projects, along with suggestions for avoiding frequent errors. The chapter highlights issues like incomplete or changing needs, requirements that clash with one another, and expectations that are too high, and it underlines the value of collaborative requirements collecting and continuing iteration. The authors advise employing a variety of ways to collect and record requirements, involve stakeholders in the process, and using validation and prioritization techniques to make sure that needs are practical and realistic.
+Chapter 8 of "The Pragmatic Programmer" covered the issues of acquiring and managing requirements in software development projects, along with suggestions for avoiding frequent errors. The chapter highlights issues like incomplete or changing needs, requirements that clash with one another, and expectations that are too high, and it underlines the value of collaborative requirements collecting and continuing iteration. The authors advise employing a variety of ways to collect and record requirements, involve stakeholders in the process, and using validation and prioritization techniques to make sure that needs are practical and realistic.  
+  
+### Extra Work: Chapter 9, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition
+**Excerpts:**
+Maintain Small, Stable Teams;  
+Schedule It to Make It Happen;  
+Organize Fully Functional Teams;  
+Do What Works, Not What's Fashionable;  
+Deliver When Users Need It;  
+Use Version Control to Drive Builds, Tests, and Releases;  
+Test Early, Test Often, Test Automatically;  
+Coding Ain't Done 'Til All the Tests Run;  
+Use Saboteurs to Test Your Testing;  
+Test State Coverage, Not Code Coverage;  
+Find Bugs Once;  
+Don't Use Manual Procedures;  
+Delight Users, Don't Just Deliver Code;  
+Sign Your Work;  
+**Summary**:  
+Chapter 9 of "The Pragmatic Programmer" emphasizes the importance of a pragmatic approach to software development projects. The chapter provides tips for achieving success through a focus on practicality, adaptability, and simplicity. This includes starting with a prototype, embracing change, working with end-users, testing early and often, and focusing on simplicity.  
+
