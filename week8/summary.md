@@ -73,4 +73,13 @@ Delight Users, Don't Just Deliver Code;
 Sign Your Work;  
 **Summary**:  
 Chapter 9 of "The Pragmatic Programmer" emphasizes the importance of a pragmatic approach to software development projects. The chapter provides tips for achieving success through a focus on practicality, adaptability, and simplicity. This includes starting with a prototype, embracing change, working with end-users, testing early and often, and focusing on simplicity.  
-
+  
+### Extra Work: Chapter 10, The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition
+**Excerpts:**
+First, Do No Harm;  
+Don't Enable Scumbags;  
+It's Your Life.  
+Share it. Celebrate it. Build it.  
+AND HAVE FUN!  
+**Summary**:  
+The chapter talks on software developers' extraordinary capacity for seeing and creating the future, as well as the responsibility that goes along with it. Software is everywhere in daily life, especially in embedded devices and social media, therefore developers must think about the potential risks and effects of their code. The author urges developers to imagine and have the guts to design a world they would like to live in, emphasizing the value of protecting users and upholding ethical standards.  
